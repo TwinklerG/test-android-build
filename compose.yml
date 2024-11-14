@@ -1,0 +1,9 @@
+services:
+  android-build:
+    build: .
+    volumes:
+      - .:/app  # 将当前文件夹映射到容器中的 /app
+      - ./outputs:/app/app/build/outputs  # 将输出目录映射到宿主机的 ./output 文件夹
+    working_dir: /app  # 设置容器内的工作目录为 /app
+    command: ./gradlew assembleRelease  # 运行 Gradle 构建 APK
+    restart: "no" # 确保容器自动终止，并且不会保持运行
